@@ -12,7 +12,7 @@ kenxAdapter.connect();
 const userDAO = new UserDAO(kenxAdapter.instance);
 userDAO.create({
     userId: UUIDGenerator.generate(),
-    name: "Matheus",
+    name: "",
     email: 'teste@teste.com',
     password: '1290',
     pictureUrl: null,
