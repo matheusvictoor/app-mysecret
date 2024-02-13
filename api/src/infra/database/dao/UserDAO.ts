@@ -24,4 +24,25 @@ export default class UserDAO implements DAO<UserModel> {
 
         return data;
     }
+
+    async findByEmail(email: string): Promise<UserModel | null> {
+        const data = await this.connection<UserModel>(this.tableName)
+            .where({ email })
+            .first();
+
+        if(!data) return null;
+
+        return data;
+    }
+
+    async update(data: UserModel): Promise<UserModel | null> {
+        const [updatedUser] = await this.connection<UserModel>(this.tableName)
+            .where({ userId: data.userId})
+            .update(data)
+            .returning('*');
+
+        if(!data) return null;
+
+        return data;
+    }
 }
